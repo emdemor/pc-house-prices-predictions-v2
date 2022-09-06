@@ -1,0 +1,12 @@
+{
+  "model": "LGBMRegressor",
+  "metric": {
+    "name": "neg_mean_squared_error",
+    "value": -54231690395.70227
+  },
+  "hyper_params": {
+    "n_estimators": 119,
+    "learning_rate": 0.11466208060286931,
+    "boosting_type": "gbdt"
+  }
+}

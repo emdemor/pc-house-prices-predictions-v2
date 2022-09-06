@@ -1,0 +1,35 @@
+# Data
+estate_types: ["HOME"]
+extract_data: false
+target_column: "price"
+date_column: "search_date"
+
+# Model
+test_size: 0.2
+estimator: GradientBoostingRegressor #GradientBoostingRegressor #RandomForestRegressor # LGBMRegressor
+random_state: null
+
+# variaveis para logica de seleção de modelos treinados
+artifact_filename: "config.json"
+metadata_store_filename: metadata_store.json
+preprocessor_filename: "preprocessor.pickle"
+estimator_filename: "estimator.pickle"
+action_for_different_metrics: "keep_old" #'keep_old', 'keep_new', 'error'
+
+neighbor_replaces:
+  "chacaras_pocos_de_caldas": "chacara_pocos_de_caldas"
+  "dos_funcionarios": "funcionarios"
+  "chacaras_alto_da_boa_vista": "alto_da_boa_vista"
+  "loteamento_residencial_tiradentes": "residencial_tiradentes"
+  "loteamento_residencial_santa_clara_ii": "residencial_santa_clara"
+  "campo_das_antas": "vale_das_antas"
+  "loteamento_campo_das_aroeiras": "campo_das_aroeiras"
+  "monte_verde_ii": "monte_verde"
+  "loteamento_vila_flora_ii": "vila_flora"
+  "bortolan_norte_i": "bortolan_norte"
+  "chacara_pocos_de_caldas": "estancia_pocos_de_caldas"
+  "loteamento_jardim_nova_europa": "jardim_europa"
+  "jardim_sao_sebastiao": "sao_sebastiao"
+  "parque_sao_sebastiao": "sao_sebastiao"
+  "jardim_filipinas": "jardim_filipino"
+  "jardim_das_hortencias": "jardim_das_hortensias"

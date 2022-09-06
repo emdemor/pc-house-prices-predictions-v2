@@ -1,0 +1,37 @@
+model: RandomForestRegressor
+
+evaluation_metric: mae
+
+static_parameters:
+  random_state: 42
+opt_config:
+  n_folds: 5
+  n_calls: 5
+  n_random_starts: 1
+  verbose: 1
+  random_state: null
+
+fit_parameters:
+  #verbose: 0
+  eval_metric: rmse
+  #early_stopping_rounds: 200
+
+cv_optmize_sample: 10000
+
+parametric_space:
+  n_estimators: Integer(80,150, prior='log-uniform')
+  criterion: Categorical(['mse'])
+  max_depth: Categorical(20*[None] + list(range(15,40)))
+  #min_samples_split: Integer(2,3)
+  #min_samples_leaf: Integer(1,2)
+  #max_features: Categorical(['auto', 'sqrt', 'log2'])
+
+hyperparameter_tunning:
+  strategy: RandomizedSearch #RandomizedSearch # BayesSearchCV
+  random_samples: 1000
+  n_iter: 100
+  scoring: neg_mean_squared_error # (customized_score, neg_mean_squared_error)
+  cv: 3
+  verbose: 1
+
+parametric_space_path: models/RandomForestRegressor/config.json

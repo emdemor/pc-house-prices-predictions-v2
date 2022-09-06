@@ -1,0 +1,348 @@
+###################################################
+# FEATURES - CONFIGURATION EXAMPLE
+#
+# >>> Example:
+# - name: nome_da_feature
+#   active: true
+#   type: float
+#   imputation_strategy: constant # (constant, mean, median)
+#   imputation_fill_value: 1 # only applicable to constant strategy
+#   limits: [0.0, 1705.0] # if set limits, do not set qlimits
+#   qlimits: [0,0.95] # quantile limts; if set qlimits, do not set limits
+#   transformation: identity # (log, log10, log1p, exp, square, sqrt, identity)
+#   discretizer_n_bins: null
+#   discretizer_encode: "ordinal" # (ordinal, onehot)
+#   discretizer_strategy: quantile # (uniform, quantile, kmeans)
+#   encode: m_estimate # (onehot, woe, target, sum, m_estimate, leave_one_out, helmert, cat_boost, james_stein)
+#   scaler: minmax #(minmax, standard, robust)
+#   drop_categories: null
+
+- name: n_parking_spaces
+  active: true
+  type: int
+  qlimits:
+    - 0
+    - 1
+  imputation_strategy: median
+  scale: minmax
+  transformation: log1p
+
+- name: n_bathrooms
+  active: true
+  type: int
+  qlimits:
+    - 0
+    - 1
+  transformation: log1p
+  imputation_strategy: constant
+  imputation_fill_value: 1
+  scale: minmax
+
+- name: n_bedrooms
+  active: true
+  type: int
+  qlimits:
+    - 0
+    - 0.99
+  imputation_strategy: constant
+  imputation_fill_value: 1
+  scale: minmax
+
+- name: area
+  active: true
+  type: float
+  qlimits:
+    - 0.0
+    - 0.999
+  imputation_strategy: median
+  imputation_fill_value: 1
+  scale: minmax
+
+# - name: units_on_floor
+#   active: true
+#   type: float
+#   qlimits:
+#     - 0
+#     - 0.95
+#   imputation_strategy: constant
+#   imputation_fill_value: 1
+#   scale: minmax
+
+- name: n_suites
+  active: true
+  type: int
+  qlimits:
+    - 0
+    - 0.99
+  imputation_strategy: constant
+  imputation_fill_value: 0
+  scale: minmax
+
+- name: neighborhood
+  active: true
+  type: categorical
+  drop_categories:
+    [
+      "residencial_e_industrial_campo_alegre",
+      "chacara_dos_cravos",
+      "castro_e_gaiga",
+      "colinas",
+    ]
+  imputation_strategy: constant
+  imputation_fill_value: "no_info"
+  encode: m_estimate
+  scale: minmax
+
+- name: longitude
+  active: true
+  type: float
+  qlimits:
+    - 0.002
+    - 1
+  imputation_strategy: median
+  scale: minmax
+
+- name: latitude
+  active: true
+  type: float
+  qlimits:
+    - 0
+    - 1
+  transformation: identity
+  imputation_strategy: median
+  scale: minmax
+
+- name: condo_fee
+  active: true
+  type: float
+  qlimits:
+    - 0
+    - 1
+  transformation: identity
+  imputation_strategy: constant
+  imputation_fill_value: 0
+  scale: minmax
+
+- name: iptu
+  active: true
+  type: float
+  limits: null
+  qlimits:
+    - 0
+    - 0.95
+  drop_categories: null
+  transformation: identity
+  imputation_strategy: mean
+  imputation_fill_value: null
+  encode: null
+  scale: minmax
+
+- name: pct_domicilios_por_sal_min_0
+  active: true
+  type: float
+  qlimits:
+    - 0
+    - 1
+  imputation_strategy: median
+  scale: minmax
+
+- name: pct_domicilios_por_sal_min_0_0.5
+  active: true
+  type: float
+  qlimits:
+    - 0
+    - 1
+  imputation_strategy: median
+  scale: minmax
+
+- name: pct_domicilios_por_sal_min_0.5_1
+  active: true
+  type: float
+  qlimits:
+    - 0
+    - 1
+  imputation_strategy: median
+  scale: minmax
+
+- name: pct_domicilios_por_sal_min_1_2
+  active: true
+  type: float
+  qlimits:
+    - 0
+    - 1
+  imputation_strategy: median
+  scale: minmax
+
+- name: pct_domicilios_por_sal_min_2_5
+  active: true
+  type: float
+  qlimits:
+    - 0
+    - 1
+  imputation_strategy: median
+  scale: minmax
+
+- name: pct_domicilios_por_sal_min_5_10
+  active: true
+  type: float
+  qlimits:
+    - 0
+    - 1
+  imputation_strategy: median
+  scale: minmax
+
+- name: pct_domicilios_por_sal_min_10_20
+  active: true
+  type: float
+  qlimits:
+    - 0
+    - 1
+  imputation_strategy: median
+  scale: minmax
+
+- name: pct_domicilios_por_sal_min_20_inf
+  active: true
+  type: float
+  qlimits:
+    - 0
+    - 1
+  imputation_strategy: median
+  scale: minmax
+
+- name: neighbor_avg_income
+  active: true
+  type: float
+  qlimits:
+    - 0
+    - 1
+  imputation_strategy: median
+  scale: minmax
+
+- name: taxa_alfabetizacao_bairro
+  active: true
+  type: float
+  qlimits:
+    - 0
+    - 1
+  imputation_strategy: median
+  scale: minmax
+
+- name: passing_days
+  active: true
+  type: integer
+  qlimits:
+    - 0
+    - 1
+  imputation_strategy: median
+  scale: minmax
+# - name: resale
+#   active: true
+#   type: float
+#   limits: null
+#   qlimits:
+#     - 0
+#     - 1
+#   drop_categories: null
+#   transformation: identity
+#   imputation_strategy: constant
+#   imputation_fill_value: 1
+#   encode: null
+#   encode: null
+#   scale: minmax
+
+# - name: buildings
+#   active: true
+#   type: float
+#   limits: null
+#   qlimits:
+#     - 0
+#     - 1
+#   drop_categories: null
+#   transformation: identity
+#   imputation_strategy: constant
+#   imputation_fill_value: 1
+#   encode: null
+#   encode: null
+#   scale: minmax
+
+# - name: plan_only
+#   active: true
+#   type: float
+#   limits: null
+#   qlimits:
+#     - 0
+#     - 1
+#   drop_categories: null
+#   transformation: identity
+#   imputation_strategy: constant
+#   imputation_fill_value: 1
+#   encode: null
+#   encode: null
+#   scale: minmax
+
+# - name: year
+#   active: true
+#   type: float
+#   limits: null
+#   qlimits:
+#     - 0
+#     - 1
+#   drop_categories: null
+#   transformation: identity
+#   imputation_strategy: median
+#   imputation_fill_value: null
+#   encode: null
+#   scale: minmax
+# - name: month
+#   active: true
+#   type: float
+#   limits: null
+#   qlimits:
+#     - 0
+#     - 1
+#   drop_categories: null
+#   transformation: identity
+#   imputation_strategy: mean
+#   imputation_fill_value: null
+#   encode: null
+#   encode: null
+#   scale: minmax
+
+# - name: day
+#   active: true
+#   type: float
+#   limits: null
+#   qlimits:
+#     - 0
+#     - 1
+#   drop_categories: null
+#   transformation: identity
+#   imputation_strategy: mean
+#   imputation_fill_value: null
+#   encode: null
+#   encode: null
+#   scale: minmax
+
+# - name: day_of_week
+#   active: true
+#   type: categorical
+#   drop_categories: null
+#   transformation: identity
+#   imputation_strategy: most_frequent
+#   imputation_fill_value: null
+#   encode: m_estimate
+#   scale: minmax
+
+# - name: passing_days
+#   active: true
+#   type: float
+#   limits: null
+#   qlimits:
+#     - 0
+#     - 1
+#   drop_categories: null
+#   transformation: identity
+#   imputation_strategy: mean
+#   imputation_fill_value: null
+#   encode: null
+#   scale: minmax

@@ -1,0 +1,38 @@
+model: LGBMRegressor
+
+evaluation_metric: mae
+
+static_parameters:
+  random_state: 42
+opt_config:
+  n_folds: 5
+  n_calls: 5
+  n_random_starts: 1
+  verbose: 1
+  random_state: null
+
+fit_parameters:
+  #verbose: 0
+  eval_metric: rmse
+  #early_stopping_rounds: 200
+
+cv_optmize_sample: 10000
+
+parametric_space:
+  boosting_type: Categorical(['gbdt', 'dart', 'goss'])
+  #num_leaves: Integer(26,36)
+  #max_depth: Integer(2, 10)
+  learning_rate: Real(0.1,0.3,prior='uniform', transform = 'identity')
+  n_estimators: Integer(80,120,prior='uniform', transform = 'identity')
+  #reg_alpha: Real(0,1)
+  #reg_lambda: Real(0,1)
+
+hyperparameter_tunning:
+  strategy: RandomizedSearch # BayesSearchCV
+  random_samples: 1000
+  n_iter: 10
+  scoring: neg_mean_squared_error # (customized_score, neg_mean_squared_error)
+  cv: 3
+  verbose: 1
+
+parametric_space_path: models/LGBMRegressor/config.json
