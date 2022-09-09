@@ -19,9 +19,9 @@ fit_parameters:
 cv_optmize_sample: 10000
 
 parametric_space:
-  n_estimators: Integer(80,150, prior='log-uniform')
+  n_estimators: Integer(20,600, prior='log-uniform')
   criterion: Categorical(['mse'])
-  max_depth: Categorical(20*[None] + list(range(15,40)))
+  max_depth: Categorical(20*[None] + list(range(10,40)))
   #min_samples_split: Integer(2,3)
   #min_samples_leaf: Integer(1,2)
   #max_features: Categorical(['auto', 'sqrt', 'log2'])
@@ -31,7 +31,7 @@ hyperparameter_tunning:
   random_samples: 1000
   n_iter: 100
   scoring: neg_mean_squared_error # (customized_score, neg_mean_squared_error)
-  cv: 3
+  cv: 4
   verbose: 1
 
 parametric_space_path: models/RandomForestRegressor/config.json

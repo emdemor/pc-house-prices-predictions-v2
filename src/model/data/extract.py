@@ -20,7 +20,7 @@ from src.model.data.cleaning import raw_sanitize
 #         id
 #         --, search_id
 #         , search_date
-#         --, id_zap
+#         , id_zap
 #         , type
 #         , n_parking_spaces
 #         , n_bathrooms
@@ -48,6 +48,7 @@ from src.model.data.cleaning import raw_sanitize
 # ) SELECT * FROM tab t
 # """
 
+###################################################
 EXTRACTION_QUERY = """\
 WITH tab AS (
     SELECT
@@ -58,6 +59,7 @@ WITH tab AS (
 SELECT
     id
     , search_date
+    , id_zap
     , type
     , n_parking_spaces
     , n_bathrooms
@@ -69,7 +71,7 @@ SELECT
     , CASE WHEN ABS(latitude) > 0 THEN latitude ELSE NULL END as latitude
     , condo_fee
     , iptu
-    , price     
+    , price
 FROM tab
 WHERE True
     AND price IS NOT NULL
